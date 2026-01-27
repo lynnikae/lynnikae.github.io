@@ -1,0 +1,2094 @@
+/* Якорная кнопка для мобильной версии с анимацией выезда */
+.anchor-btn-mobile {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: #000;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    padding: 15px 0 15px 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 -2px 18px rgba(0,0,0,0.08);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+    transition: opacity 0.75s cubic-bezier(.4,0,.2,1), transform 0.75s cubic-bezier(.4,0,.2,1), background 0.75s;
+}
+.anchor-btn-mobile.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+@media (max-width: 767px) {
+    .anchor-btn-mobile {
+        display: block;
+    }
+}
+@media (min-width: 768px) {
+    .anchor-btn-mobile {
+        display: none !important;
+    }
+}
+
+/* Секция Контакты */
+/* Базовые стили */
+@font-face {
+    font-family: 'Lovelace';
+    src: url('fonts/Lovelace-Regular.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display:swap
+}
+
+@font-face {
+    font-family: 'Lovelace-Light';
+    src: url('fonts/Lovelace-Light.woff2') format('woff2');
+    font-weight: 100;
+    font-style: light;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+    width: 100%; /* Гарантируем, что ширина не превышает экран */
+    -webkit-overflow-scrolling: touch; /* Плавная прокрутка на iOS */
+    position: relative; /* Для стабильности позиционирования */
+}
+
+/* Гарантируем, что все изображения и блоки не выходят за пределы экрана */
+img, .main-photo, .contacts-photo, .final-photo, .outfit-image {
+    max-width: 100%; /* Ограничиваем ширину изображений */
+    height: auto; /* Сохраняем пропорции */
+    display: block; /* Убираем возможные inline-пробелы */
+}
+
+/* Для всех контейнеров с потенциально широким содержимым */
+.container, .photo-container, .location-card, .calendar-wrapper, .contacts-row, .timer-display {
+    max-width: 100%; /* Не даем превышать ширину экрана */
+    overflow: hidden; /* Скрываем выходящие части, если они есть */
+}
+
+body {
+    font-family: 'Lovelace-Regular', serif;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.2;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 80px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Хедер с именами */
+.header-names {
+    margin-top: 0px;
+    margin-bottom: 30px;
+    width: 100%;
+    font-size: 64px;
+}
+
+.names-wrapper {
+    position: relative;
+    width: min(560px, 100%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 120px; /* Фиксированная высота для правильного позиционирования */
+    margin: 0 auto;
+    padding-left: 40px; /* Отступ слева как на референсе */
+}
+
+.bride {
+    padding-left: 90px;
+}
+
+.names-wrapper h1 {
+    font-family: 'Lovelace-Light', serif;
+    font-weight: 100;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    z-index: 2;
+    position: relative;
+    width: auto; /* Уберем 100%, чтобы позиционировать блоки точнее */
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+}
+
+/* Амперсанд */
+.ampersand {
+    position: absolute;
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 6rem;
+    color: #e4e4e4;
+    z-index: 1;
+    /* Ставим амперсанд слева позади имён и чуть ниже */
+    top: 72%;
+    left: 120px;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    pointer-events: none;
+    line-height: 0.9;
+}
+
+/* Секция с фото */
+.photo-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.photo-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ограничиваем ширину фото, чтобы оно было вертикальным прямоугольником */
+}
+
+.main-photo {
+    width: 80%;
+    height: auto;
+    display: block;
+    aspect-ratio: 2 / 3; /* Вертикальная пропорция */
+    object-fit: cover;
+    margin: 0 auto; /* Центрируем фото по горизонтали */
+}
+
+/* Секция приглашения */
+.invitation-section {
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.dear-friends {
+    font-family: 'Lovelace-Light', serif;
+    font-size: 1.5rem;
+    font-weight: 570;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: -0.05em;
+}
+
+@font-face {
+    font-family: 'RozoviiChulok';
+    src: url('/fonts/RozoviiChulok-Regular.woff2') format('woff2'); /* Убедитесь, что имя файла и путь верны (otf/ttf/woff) */
+    font-weight: normal;
+    font-style: normal;
+}
+
+.save-the-date-text {
+    font-family: 'RozoviiChulok', serif;
+    font-size: 3rem; 
+    text-align: center;
+    margin: 10px 0 20px 0;
+    color: #000; /* или другой цвет в соответствии с макетом */
+    line-height: 1;
+}
+
+.save-the-place-text {
+    font-family: 'RozoviiChulok', serif;
+    font-size: 3rem; 
+    text-align: center;
+    margin: 10px 0 20px 0;
+    color: #000; /* или другой цвет в соответствии с макетом */
+    line-height: 1;
+}
+
+.of-the-day-text {
+    font-family: 'RozoviiChulok', serif;
+    font-size: 3rem; 
+    text-align: center;
+    margin: 10px 0 20px 0;
+    color: #000; /* или другой цвет в соответствии с макетом */
+    line-height: 1;
+}
+
+.invitation-text {
+    max-width: 360px;
+    font-size: 0.55rem;
+    line-height: 1.2;
+    margin-bottom: 50px;
+    padding: 0 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* Дата с линиями */
+.big-date-wrapper {
+    font-family: 'Lovelace', 'Bodoni Moda', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.big-date {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 1.5rem;
+    font-weight: 200;
+    margin: 0 20px;
+    white-space: nowrap;
+}
+
+.line {
+    height: 1px;
+    background-color: #1a1a1a;
+    width: 60px;
+}
+
+/* Календарь */
+.calendar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.month-name {
+    font-family: 'Lovelace', 'Bodoni Moda', serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px 8px;
+    text-align: center;
+}
+
+.weekday {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: rgb(127,127,127);
+    margin-bottom: 1px;
+    font-weight: 390;
+}
+
+.day {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 370;
+    color: rgb(86, 86, 86);
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Сердечко для даты */
+.heart-gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    pointer-events: none;
+}
+
+.heart-giff {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+}
+
+/* Секция Место проведения */
+.location-section {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    width: 100%;
+    position: relative;
+    z-index: 0; /* Создаем контекст наложения, чтобы псевдоэлемент не уходил под container */
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Чтобы размытый фон не вылезал */
+}
+
+/* Псевдо-элемент для черно-белого фона */
+.location-section::before {
+    content: "";
+    position: absolute;
+    top: 10%; /* Сдвигаем фон чуть выше, чтобы карточка визуально была ниже */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background-image: url('kisl.jpg'); 
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(90%); /* Возвращаем ч/б, как просили ранее */
+    z-index: -1;
+}
+
+.location-card {
+    background-color: #ffffff;
+    padding: 50px 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.113);
+}
+
+.pin-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+/* Используем более специфичный селектор и !important для гарантии */
+.location-card .pin-icon .pin-gif, 
+.pin-gif {
+    position: center;
+    width: 70px !important; 
+    max-width: 70px !important;
+    height: auto !important;
+    filter: grayscale(100%) !important;
+    -webkit-filter: grayscale(100%) !important;
+    display: block;
+    margin: 0 auto;
+}
+
+.location-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+
+.location-address {
+    font-family: 'Montserrat', 'Bodoni Moda', serif;
+    font-size: 1rem;
+    line-height: 1.4;
+    max-width: 300px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.location-btn {
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease;
+}
+
+.location-btn:hover {
+    background-color: rgb(107, 18, 10);
+    transition: background-color 0.5s ease 0.2s;
+}
+
+/* Секция Тайминг */
+.timing-section {
+    padding: 60px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.timing-title {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 5px;
+}
+
+
+
+.timing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.timing-items {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+}
+
+.timing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 3rem;
+    font-weight: 100;
+    margin-bottom: 3px;
+    line-height: 1.2;
+}
+
+.event {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+.timing-line {
+    height: 1px;
+    background-color: #1a1a1a;
+    width: 80px;
+}
+
+/* Секция Дресс-код */
+.dresscode-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.dresscode-title {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 10px;
+}
+
+.dresscode-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    max-width: 600px;
+    margin-bottom: 30px;
+    color: #000000;
+}
+
+.palette-colors {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.color-black {
+    background-color: rgb(236, 228, 219);
+}
+
+.color-red {
+    background-color: rgb(172, 195, 219);
+}
+
+.color-beige {
+    background-color: rgb(150, 169, 150); 
+}
+
+.outfits-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.outfit-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outfit-script-title {
+    font-family: 'Lovelace', 'Bodoni Moda', serif;
+    font-size: 3rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    transform: rotate(-5deg);
+}
+
+.outfit-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Легкая тень для всего коллажа */
+}
+
+/* Секция Таймер */
+.countdown-section {
+    background-color: #000000;
+    color: #ffffff;
+    width: 100%;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.countdown-title {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 20px;
+}
+
+.waiting-for-u-text {
+    font-family: 'RozoviiChulok', serif;
+    font-size: 3rem; 
+    text-align: center;
+    margin: 10px 0 40px 0;
+    color: #ffffff; /* или другой цвет в соответствии с макетом */
+    line-height: 1;
+}
+
+.timer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.timer-display {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Отступы между цифрами */
+}
+
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px; /* Фиксированная ширина для стабильности */
+}
+
+.timer-number {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 2.5rem;
+    font-weight: 100;
+    margin-bottom: 5px;
+}
+
+.timer-label {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: #cccccc;
+    font-weight: 300;
+    margin-bottom: 0px;
+}
+
+.timer-line {
+    display: none; /* Скрываем линии на мобильных */
+    height: 1px;
+    background-color: #ffffff;
+    width: 100px;
+    margin: 0 40px;
+}
+
+/* Секция Пожелания */
+.wishes-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.wishes-title {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 10px;
+}
+
+.our-wishes {
+    font-family: 'RozoviiChulok', serif;
+    font-size: 1.2rem; 
+    text-align: center;
+    margin: 10px 0 20px 0;
+    color: #000; /* или другой цвет в соответствии с макетом */
+    line-height: 1;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.slider-content {
+    flex: 1;
+    margin: 0 20px;
+    min-height: 120px; /* Фиксируем высоту, чтобы не прыгало */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    max-width: 600px;
+    display: none; /* Скрываем все слайды по умолчанию */
+    color: #333;
+    animation: fadeEffect 0.5s; /* Плавное появление */
+}
+
+.slide.active {
+    display: block; /* Показываем активный */
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.slider-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.slider-arrow:hover {
+    transform: scale(1.1);
+}
+
+.gift-list-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease;
+}
+
+.gift-list-btn:hover {
+    background-color: #333333;
+}
+
+/* Секция Контакты */
+.contacts-section {
+    padding: 200px 20px 80px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contacts-title {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 3rem; /* Чуть крупнее, как на скрине */
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 10px;
+}
+
+.vertical-line {
+    width: 1px;
+    height: 80px;
+    background-color: #1a1a1a;
+    margin-bottom: 30px;
+    margin-top: 5px;
+}
+
+.contacts-photo-container {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 30px;
+}
+
+.contacts-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+.contacts-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    max-width: 500px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    color: #000000;
+}
+
+.contacts-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px; /* Расстояние между контактами */
+    width: 100%;
+    margin-top: 10px;
+    flex-wrap: wrap; 
+}
+    .contacts-text,
+    .organizer-name,
+    .organizer-phone,
+    .telegram-icon {
+        text-align: center!important;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .contacts-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 60px;
+        width: 100%;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    .contact-person {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 180px;
+        margin-bottom: 0;
+    }
+
+    .contacts-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 32px;
+        width: 100%;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    .contact-person {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 140px;
+        margin-bottom: 0;
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 0.7rem;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 5px;
+}
+
+.organizer-phone {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    margin-bottom: 15px;
+    display: block;
+    letter-spacing: -0.05em;
+}
+
+.telegram-icon {
+    margin-bottom: 20px;
+    transform: rotate(0deg); 
+}
+
+.contacts-icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.contact-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 40px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: rgb(107, 18, 10);
+    transition: background-color 0.5s ease 0.2s;
+}
+
+/* Секция Анкета гостя (RSVP) */
+.rsvp-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.rsvp-title {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 30px;
+    line-height: 1.1;
+}
+
+.rsvp-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    color: #333;
+    max-width: 600px;
+}
+
+.rsvp-date {
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 50px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.rsvp-btn-wrapper {
+    position: relative;
+    padding: 10px; /* Отступ для рамки */
+}
+
+/* Стильная кнопка с эффектом двойной рамки */
+.rsvp-btn {
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 18px 40px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 0.3s ease;
+    border: 1px solid #000000;
+    position: relative;
+    z-index: 1;
+}
+
+/* Декоративная рамка сзади */
+.rsvp-btn::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000000;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.rsvp-btn:hover {
+    color: #ffffff;
+    background-color: rgb(107, 18, 10);
+    transform: translate(-3px, -3px);
+}
+
+.rsvp-btn:hover::before {
+    transform: translate(3px, 3px);
+    opacity: 0.5;
+}
+
+/* Секция Финал */
+.final-section {
+    padding: 60px 20px 0;
+    text-align: center;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.final-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.final-vertical-line {
+    width: 1px;
+    height: 80px;
+    background-color: #000;
+    margin-bottom: 0px;
+}
+
+.final-names {
+    margin-top: 0px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.final-name-s {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 3rem; /* Размер для Сергея */
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #1a1a1a;
+    margin: 0 0 0px;
+}
+
+.final-name-a {
+    font-family: 'Lovelace-Light', 'Bodoni Moda', serif;
+    font-size: 5rem; /* Размер для Ангелины (больше) */
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+
+.final-ampersand {
+    font-family: 'Lovelace', 'Bodoni Moda', serif;
+    font-size: 3rem;
+    margin: 0px 0;
+}
+
+.final-photo-container {
+    width: 100%;
+}
+
+.final-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 3 / 2; /* Делаем фото горизонтальным */
+    filter: grayscale(70%);
+}
+
+.event-zags:link {
+    font-family: 'Montserrat', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: #7d1313;
+}
+
+.event-zags:visited {
+    color: #4a0d0d;
+}
+
+.event-zags:hover {
+    color: #000000;
+}
+
+.event-zags:active {
+    color: #2c0202;
+}
+
+/* ========================================= */
+/* АДАПТИВНОСТЬ (Media Queries)              */
+/* ========================================= */
+
+/* Mobile-only hero styles: изменяют только смартфонную версию */
+@media (max-width: 767px) {
+    .photo-section.hero-section {
+        position: relative;
+        width: 100%;
+        height: 82vh;
+        min-height: 520px;
+        display: block;
+        overflow: hidden;
+        /* border-bottom-left-radius: 18px; */
+        /* border-bottom-right-radius: 18px; */
+        border-radius: 0;
+    }
+
+    .photo-section.hero-section .photo-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+    }
+
+    .photo-section.hero-section .main-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 0;
+    }
+
+    .photo-section.hero-section .header-names {
+        position: absolute;
+        left: 50%;
+        bottom: 16%;
+        transform: translateX(-50%);
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+        margin: 0;
+        pointer-events: none;
+    }
+
+    .photo-section.hero-section .names-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding-left: 0;
+        margin: 0;
+        position: relative;
+    }
+
+    .photo-section.hero-section .names-wrapper h1 {
+        font-family: 'Lovelace', 'Bodoni Moda', serif;
+        color: #fff;
+        font-size: clamp(2.6rem, 10vw, 5.2rem);
+        line-height: 0.95;
+        z-index: 3;
+        margin: 0;
+        letter-spacing: -0.05em;
+        text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        margin-left: -150px;
+    }
+
+    .photo-section.hero-section .ampersand {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.266);
+        font-size: clamp(7rem, 22vw, 8rem);
+        left: 17%;
+        top: 82%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        pointer-events: none;
+        line-height: 0.8;
+    }
+
+    .photo-section.hero-section .groom,
+    .photo-section.hero-section .bride {
+        z-index: 3;
+        color: #fff;
+    }
+
+    .bride {
+        padding-left: 200px;
+    }
+
+    .scroll-hint {
+        position: absolute;
+        left: 30%;
+        bottom: 5%;
+        transform: translateX(-50%);
+        background: #ffffff;
+        color: #111111;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        border: none;
+        cursor: pointer;
+        z-index: 4;
+    }
+
+    /* Убираем лишние отступы сверху контейнера на мобильных, чтобы герой был у верхнего края */
+    .container {
+        padding-top: 0;
+        padding-bottom: 30px;
+    }
+
+    .dear-friends {
+        font-size: 3rem;
+    }
+
+    .save-the-date {
+        font-size: 3rem;
+    }
+
+    .invitation-text {
+        font-size: 0.8rem;
+        max-width: 300px;
+    }
+
+    .big-date {
+        font-size: 4rem;
+        margin: 0 20px;
+    }
+
+    .calendar-grid {
+        gap: 3px 2px;
+    }
+
+    .day, .weekday {
+        font-size: 0.8rem;
+        width: 28px;
+        height: 28px;
+    }
+
+    .heart-gif {
+        width: 45px;
+        height: 45px;
+    }
+
+    .heart-giff {
+        width: 55px;
+        height: 55px;
+    }
+
+    .month-name {
+        font-size: 1.2rem;
+    }
+
+    /* Мобильный фон для секции "Место проведения" */
+    .location-section {
+        position: relative;
+        min-height: 520px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    /* Фоновая картинка */
+    .location-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url('kisl.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(100%) brightness(0.65);
+        z-index: 0;
+    }
+
+    /* Белая карточка */
+    .location-card {
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        width: 85%;
+        max-width: 340px;
+        padding: 28px 22px 34px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .location-title {
+        font-size: 2rem;
+        margin-bottom: 6px;
+    }
+
+    .save-the-place-text {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+
+    .location-address {
+        font-size: 0.95rem;
+        line-height: 1.3;
+        margin-bottom: 22px;
+        color: #222;
+    }
+
+    .location-btn {
+        width: 100%;
+        max-width: 130px;
+        padding: 10px 0;
+        font-size: 0.85rem;
+    }
+
+    .timing-title {
+        font-size: 3rem;
+    }
+
+    .of-the-day-text {
+        font-size: 2.5rem;
+        margin-bottom: 1px;
+    }
+
+    .time {
+        font-size: 2.6rem;
+    }
+
+    .event {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+
+    /* Вертикальные линии для секции Тайминг на мобильных */
+    .timing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .timing-line {
+        width: 1px;
+        height: 60px;
+        background-color: #1a1a1a;
+        margin: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border-radius: 1px;
+        display: block;
+    }
+
+    .dresscode-title {
+        font-size: 2.5rem;
+    }
+
+    .dresscode-desc {
+        font-size: 0.75rem;
+        max-width: 280px;
+        margin-bottom: 20px;
+    }
+
+    .countdown-title {
+        font-size: 2.5rem;
+    }
+
+    .waiting-for-u-text {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .wishes-title {
+        font-size: 2.5rem;
+    }
+
+    .our-wishes {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .slide {
+        font-size: 0.75rem;
+    }
+
+    .contacts-section {
+        padding-top: 0;
+    }
+
+    .contacts-photo-container {
+        max-width: 300px;
+    }
+
+    .contacts-text {
+        font-size: 0.8rem;
+        max-width: 320px;
+    }
+
+    .organizer-name {
+        font-size: 0.9rem;
+    }
+
+    .organizer-phone {
+        font-size: 0.9rem;
+    }
+
+    .telegram-icon {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contacts-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .contacts-icon svg {
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* .contacts-row — горизонтально на всех экранах, мобильное переопределение убрано */
+
+    .contact-btn {
+        width: 100%;
+        max-width: 130px;
+        padding: 10px 0;
+        font-size: 0.85rem;
+    }
+
+    .rsvp-title {
+        font-size: 2.5rem;
+    }
+
+    .rsvp-text {
+        font-size: 0.9rem;
+        max-width: 280px;
+        margin-bottom: 20px;
+    }
+
+    .rsvp-date {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        color: #4a0d0d;
+    }
+
+    .rsvp-btn {
+        width: 100%;
+        max-width: 200px;
+        padding: 10px 0;
+        font-size: 0.85rem;
+    }
+
+    .final-text {
+        font-size: 0.9rem;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .final-vertical-line {
+        height: 60px;
+        margin-bottom: 15px;
+    }
+
+    .final-name-s {
+        font-size: 3.5rem;
+    }   
+
+    .final-name-a {
+        font-size: 2.2rem;
+    }
+
+    .final-ampersand {
+        font-size: 2.2rem;
+    }
+
+    .final-photo-container {
+        max-width: 320px;
+
+    }
+    
+}
+
+/* Tablet (Планшеты) */
+@media (min-width: 768px) {
+
+    .anchor-btn-mobile {
+    display: none;
+    }
+
+    /* Layout & Header */
+    .container {
+        max-width: 768px;
+    }
+    .names-wrapper {
+        padding-left: 100px;
+    }
+
+    .ampersand {
+        left: 175px;
+        transform: translate(-50%, -50%);
+    }
+
+    .photo-container {
+        max-width: 500px;
+    }
+
+    /* Invitation Info */
+    .dear-friends {
+        font-size: 3rem;
+    }
+    
+    .save-the-date {
+        font-size: 4rem;
+    }
+    
+    .invitation-text {
+        font-size: 0.9rem;
+        max-width: 360px;
+    }
+
+    .big-date {
+        font-size: 3.5rem;
+        margin: 0 40px;
+    }
+    
+    .line {
+        width: 100px;
+    }
+    
+    .calendar-grid {
+        gap: 4px 8px;
+    }
+    
+    .day, .weekday {
+        font-size: 1rem;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .heart-svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Location */
+    .location-section {
+        padding: 100px 40px;
+    }
+
+    .location-card {
+        padding-top: 20px;
+        max-width: 600px;
+    }
+
+    .location-title {
+        font-size: 3.5rem;
+        letter-spacing: -0.05em;
+    }
+
+    .location-address {
+        max-width: 360px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        margin-bottom: 50px;
+        padding: 0 15px;
+        font-family: 'Montserrat', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 100;
+        font-style: normal;
+        letter-spacing: 0.04em;
+    }
+    
+    .location-btn {
+        font-family: 'Montserrat', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 100;
+        font-style: normal;
+    }
+
+    .save-the-place {
+        font-size: 3.5rem;
+    }
+
+    /* Timing */
+    .timing-section {
+        padding: 100px 20px;
+    }
+
+    .timing-title {
+        font-size: 3.5rem;
+    }
+
+    .of-the-day {
+        font-size: 3.5rem;
+        margin-bottom: 60px;
+    }
+
+    .timing-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+
+    .timing-items {
+        flex-direction: row;
+        gap: 40px;
+        margin: 0 40px;
+    }
+
+    .timing-line {
+        display: block;
+        margin-top: 25px;
+    }
+
+    .time {
+        font-size: 2.6rem;
+    }
+
+    /* Dress Code */
+    .dresscode-title {
+        font-size: 3rem;
+    }
+    
+    .outfits-wrapper {
+        flex-direction: row; /* В ряд на больших экранах */
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    .outfit-col {
+        flex: 1;
+        max-width: 500px;
+    }
+
+    /* Countdown / Timer */
+    .countdown-title {
+        font-size: 3rem;
+    }
+    
+    .waiting-text {
+        font-size: 4rem;
+    }
+
+    .timer-display {
+        gap: 15px;
+    }
+    
+    .timer-item {
+        width: auto;
+        min-width: 80px;
+    }
+
+    .timer-number {
+        font-size: 2.5rem;
+    }
+    
+    .timer-label {
+        font-size: 1rem;
+    }
+    
+    .timer-line {
+        display: block; /* Показываем линии на больших экранах */
+    }
+
+    /* Wishes */
+    .wishes-title {
+        font-size: 4rem;
+    }
+    
+    .our-wishes {
+        font-size: 4rem;
+    }
+
+    .slide {
+        font-size: 1rem;
+    }
+
+    .slider-content {
+        margin: 0 40px;
+    }
+
+    /* RSVP */
+    .rsvp-title {
+        font-size: 3.2rem;
+    }
+    
+    .rsvp-text {
+        font-size: 1.2rem;
+    }
+    
+    .rsvp-date {
+        font-size: 3.1rem;
+    }
+
+    /* Contacts */
+    .contacts-title {
+        font-size: 4.5rem; /* Очень крупный заголовок */
+    }
+
+    .contacts-photo-container {
+        max-width: 400px;
+    }
+
+    .organizer-name {
+        font-size: 1.5rem;
+    }
+
+    .organizer-phone {
+        font-size: 1.7rem;
+    }
+
+    /* Final Section */
+    .final-section {
+        padding-top: 100px;
+    }
+
+    .final-text {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+
+    .final-vertical-line {
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+    .final-name-s {
+        font-size: 3rem; /* Увеличиваем на планшете */
+        font-weight: 300;
+        text-transform: uppercase;
+        line-height: 1;
+        letter-spacing: -0.05em;
+    }
+
+    .final-name-a {
+        font-size: 4rem; /* Увеличиваем на планшете */
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 1;
+        letter-spacing: -0.05em;
+    }
+
+    .final-ampersand {
+        font-size: 2.5rem;
+    }
+}
+
+/* PC (Десктопы) */
+@media (min-width: 1024px) {
+    
+    .anchor-btn-mobile {
+        display: none;
+    }
+
+    body {
+        background-color: #ffffff; 
+    }
+
+    .container {
+        background-color: #ffffff;
+        min-height: 100vh;
+        max-width: 900px;
+        box-shadow: none; 
+        padding-top: 60px;
+    }
+
+    .ampersand {
+        transform: translate(-50%, -50%);
+    }
+    
+    .overlay-text {
+        font-size: 5rem;
+        top: 40px;
+    }
+
+    .timing-items {
+        gap: 60px;
+    }
+
+  
+}
+
+/* ========================================= */
+/* АНИМАЦИИ (Animations)                     */
+/* ========================================= */
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Задержка для элементов, идущих подряд (если нужно) */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 1s ease-out;
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 1s ease-out;
+}
+
+.slide-in-left.visible, 
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ========================================= */
+/* МОДАЛЬНОЕ ОКНО (Modal)                    */
+/* ========================================= */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 40px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    font-family: 'Lovelace', 'Bodoni Moda', serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.modal-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.modal-contacts {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.modal-person {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-person h3 {
+    font-family: 'Lovelace', 'Bodoni Moda', serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.modal-link {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    color: #1a1a1a;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    width: 100%;
+    max-width: 200px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+}
+
+.modal-link:hover {
+    background-color: #7d1313;
+    color: #fff;
+    border-color: #0084ff;
+}
+
+.modal-divider {
+    width: 1px;
+    background-color: #eee;
+    align-self: stretch;
+    display: none; 
+}
+
+@media (min-width: 768px) {
+    .modal-divider {
+        display: block;
+    }
+    
+    .modal-contacts {
+        flex-wrap: nowrap;
+    }
+}
+/* Показывать десктопный хедер на больших экранах и скрывать мобильный герой */
+.desktop-header { display: none; }
+
+@media (min-width: 768px) {
+    .desktop-header { display: block; }
+    /* Скрываем заголовок, который находится внутри .photo-section на планшетах/десктопах */
+    .photo-section.hero-section .header-names { display: none; }
+    .scroll-hint { display: none; }
+}
+
+@media (max-width: 767px) {
+    /* На мобильных скрываем десктопный хедер и используем геро-версию */
+    .desktop-header { display: none; }
+    .photo-section.hero-section .header-names { display: block; }
+
+    /* Место проведения — мобильная карточка поверх фона */
+    .location-section {
+        position: relative;
+        padding: 0;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        margin: 0;
+    }
+    .location-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url('kisl.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(100%) brightness(0.7);
+        z-index: 0;
+        border-radius: 0;
+    }
+    .location-card {
+        position: relative;
+        z-index: 1;
+        background: #fff;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        padding: 25px 18px 36px 18px;
+        margin: 32px 0;
+        width: 90vw;
+        height: auto;
+        max-width: 370px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .location-title {
+        font-size: 2.1rem;
+        margin-bottom: 8px;
+    }
+    .save-the-place-text {
+        font-size: 1.2rem;
+        margin-bottom: 18px;
+    }
+    .location-address {
+        font-size: 0.95rem;
+        margin-bottom: 22px;
+        color: #222;
+        line-height: 1.3;
+    }
+    .location-btn {
+        width: 100%;
+        max-width: 130px;
+        font-size: 0.65rem;
+        padding: 10px 0;
+        font-weight: 500;
+        margin-top: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .pin-icon {
+        margin-bottom: 18px;
+    }
+    .pin-gif {
+        width: 48px !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto;
+    }
+    /* Убираем внутренний паддинг секции */
+    .location-section > .location-card {
+        margin: 60 auto;
+    }
+}
+
+@media (max-width: 767px) {
+  .location-section {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .location-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    background-image: url("kisl.jpg"); /* <-- ТВОЯ картинка */
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) brightness(0.6);
+    z-index: 0;
+  }
+
+  .location-card {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    width: 85%;
+    max-width: 340px;
+    padding: 28px 50px 34px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+}

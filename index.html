@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Сергей & Ангелина</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+        <!-- Блок с именами (десктоп) -->
+        <header class="header-names desktop-header">
+            <div class="names-wrapper">
+                <h1 class="groom">СЕРГЕЙ</h1>
+                <div class="ampersand" aria-hidden="true">&</div>
+                <h1 class="bride">АНГЕЛИНА</h1>
+            </div>
+        </header>
+
+        <!-- Блок с фото + имена (герой на смартфоне) -->
+        <section class="photo-section hero-section">
+            <div class="photo-container">
+                <!-- Фотография пары -->
+                <img src="Frame 1.jpg" alt="Сергей и Ангелина" class="main-photo">
+            </div>
+
+            <header class="header-names mobile-hero-header">
+                <div class="names-wrapper">
+                    <h1 class="groom">СЕРГЕЙ</h1>
+                    <div class="ampersand" aria-hidden="true">&</div>
+                    <h1 class="bride">АНГЕЛИНА</h1>
+                </div>
+            </header>
+
+            <button class="scroll-hint" aria-label="Листайте вниз">Листайте вниз ▾</button>
+        <style>
+            @keyframes bounce {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .scroll-hint {
+                    animation: bounce 1.5s infinite;
+                }
+            }
+        </style>
+        </section>
+
+        <!-- Пустое пространство между секциями -->
+        <div style="height: 70px;"></div>
+
+        <!-- Секция приглашения -->
+        <section class="invitation-section">
+            <h2 class="dear-friends">ДОРОГИЕ ДРУЗЬЯ!</h2>
+            <!-- Замена картинки на текст -->
+            <div class="save-the-date-text">save the date!</div>
+
+            
+            <p class="invitation-text">
+                Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этот день рядом с нами!
+            </p>
+
+            <div class="big-date-wrapper">
+                <div class="line"></div>
+                <div class="big-date">20.06.26</div>
+                <div class="line"></div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <h3 class="month-name">ИЮНЬ</h3>
+                
+                <div class="calendar-grid">
+                    <!-- Дни недели (ПН-ВС) -->
+                    <div class="weekday">ПН</div>
+                    <div class="weekday">ВТ</div>
+                    <div class="weekday">СР</div>
+                    <div class="weekday">ЧТ</div>
+                    <div class="weekday">ПТ</div>
+                    <div class="weekday">СБ</div>
+                    <div class="weekday">ВС</div>
+
+                    <!-- Дни месяца -->
+                    <!-- Июнь 2026 начинается с понедельника (1 число) -->
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day">14</div>
+
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day heart-date">
+                        20
+                        <img src="heart_moving.gif" class="heart-gif" alt="heart" style="filter: sepia(1) hue-rotate(290deg) saturate(3);">
+                        <img src="heart_moving.gif" class="heart-giff" alt="heart" style="filter: sepia(1) hue-rotate(290deg) saturate(3);">
+                    </div>
+                    <div class="day">21</div>
+
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day">28</div>
+
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                    <div class="day"></div> <!-- Пустые для сетки если нужно -->
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 120px;"></div>
+
+        <!-- Секция Место проведения -->
+        <section class="location-section">
+            <div class="location-card">
+                <!-- Иконка пина -->
+                <div class="pin-icon">
+                    <img src="pin.gif" alt="pin" class="pin-gif" style="width: 35px; filter: grayscale(100%);">
+                </div>
+                
+                <h2 class="location-title">
+                    МЕСТО<br>ПРОВЕДЕНИЯ
+                </h2>
+                
+                <div class="save-the-place-text">save the place!</div>
+                
+                <p class="location-address">
+                    г. Кисловодск, ул. Шаляпина, 12А.<br>Ресторан ≪Старый город≫
+                </p>
+                
+                <a href="https://yandex.ru/maps/org/stary_gorod/1019625526?si=lynnikae" class="location-btn" target="_blank" rel="noopener noreferrer">КАК ДОБРАТЬСЯ</a>
+            </div>
+        </section>
+
+        <div style="height: 70px;"></div>
+
+        <!-- Секция Тайминг -->
+        <section class="timing-section">
+            <h2 class="timing-title">ТАЙМИНГ</h2>
+            <div class="of-the-day-text">of the day</div>
+
+            <div class="timing-container">
+                <div class="timing-line"></div>
+                
+                <div class="timing-items">
+                    <div class="timing-item">
+                        <div class="time">14:00</div>
+                        <div class="event">Церемония регистрации</div>
+                        <a href="https://yandex.ru/maps/org/otdel_zags_upravleniya_zags_stavropolskogo_kraya_po_g_kislovodsku/1098827386?si=lynnikae" target="_blank" rel="noopener noreferrer" class="event-zags">ЗАГС г. Кисловодска (пр. Дзержинского, д.28)</a>
+                    </div>
+                    <div class="timing-item">
+                        <div class="time">17:00</div>
+                        <div class="event">Сбор гостей</div>
+                    </div>
+                    <div class="timing-item">
+                        <div class="time">17:30</div>
+                        <div class="event">Банкет <br>в ресторане<br>≪Старый город≫</div>
+                    </div>
+                    <div class="timing-item">
+                        <div class="time">23:00</div>
+                        <div class="event">Завершение вечера</div>
+                    </div>
+                </div>
+
+                <div class="timing-line"></div>
+            </div>
+        </section>
+
+        <!-- Секция Дресс-код -->
+        <section class="dresscode-section">
+            <h2 class="dresscode-title">ДРЕСС-КОД</h2>
+            <p class="dresscode-desc">
+                Мы очень ждём и готовимся к нашему незабываемому дню!<br>
+                Поддержите нас Вашими улыбками и объятиями, а также<br>
+                красивыми нарядами в пастельной палитре
+            </p>
+            
+            <div class="palette-colors">
+                <div class="color-circle color-black"></div>
+                <div class="color-circle color-red"></div>
+                <div class="color-circle color-beige"></div>
+            </div>
+
+            <div class="outfits-wrapper">
+                <!-- Ladies -->
+                <div class="outfit-col">
+                    <img src="ledies.jpg" alt="Образы для девушек" class="outfit-image">
+                </div>
+
+                <!-- Gentlemen -->
+                <div class="outfit-col">
+                    <img src="gentelm.jpg" alt="Образы для мужчин" class="outfit-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Таймер обратного отсчета -->
+        <section class="countdown-section">
+            <h2 class="countdown-title">ДО СВАДЬБЫ<br>ОСТАЛОСЬ</h2>
+            <div class="waiting-for-u-text">Waiting for you!</div>
+
+            <div class="timer-wrapper">
+                <div class="timer-line"></div>
+                
+                <div class="timer-display">
+                    <div class="timer-item">
+                        <div class="timer-number" id="days">00</div>
+                        <div class="timer-label">Дней</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-number" id="hours">00</div>
+                        <div class="timer-label">Часов</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-number" id="minutes">00</div>
+                        <div class="timer-label">Минут</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-number" id="seconds">00</div>
+                        <div class="timer-label">Секунд</div>
+                    </div>
+                </div>
+
+                <div class="timer-line"></div>
+            </div>
+        </section>
+
+        <div style="height: 100px;"></div>
+
+        <!-- Секция Пожелания (Слайдер) -->
+        <section class="wishes-section">
+            <h2 class="wishes-title">ПОЖЕЛАНИЯ</h2>
+            <div class="our-wishes">Our wishes</div>
+
+            <div class="slider-container">
+                <button class="slider-arrow prev-btn" onclick="changeSlide(-1)">
+                    <!-- SVG стрелка влево -->
+                    <svg width="40" height="20" viewBox="0 0 50 20" fill="none" stroke="#555" stroke-width="2">
+                        <path d="M10 10 H50 M10 10 L20 0 M10 10 L20 20"/>
+                    </svg>
+                </button>
+                
+                <div class="slider-content">
+                    <div class="slide active">
+                        <p>
+                            Будем очень признательны, если Вы воздержитесь от криков «Горько». Ведь поцелуй – это знак выражения чувств, и он не может быть по заказу.
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <p>
+                            Самый лучший подарок для нас – это ваше присутствие на нашей свадьбе. Мы будем счастливы разделить этот день с вами!
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <p>
+                            Если вы хотите сделать нам подарок, то будем рады вкладу в наш семейный бюджет. Но главное для нас — ваше присутствие и хорошее настроение!
+                        </p>
+                    </div>
+                </div>
+
+                <button class="slider-arrow next-btn" onclick="changeSlide(1)">
+                    <!-- SVG стрелка вправо -->
+                    <svg width="40" height="20" viewBox="0 0 50 20" fill="none" stroke="#555" stroke-width="2">
+                        <path d="M40 10 H0 M40 10 L30 0 M40 10 L30 20"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Секция Контакты -->
+        <section class="contacts-section">
+            <h2 class="contacts-title">КОНТАКТЫ</h2>
+            <div class="vertical-line"></div>
+            
+            <div class="contacts-photo-container">
+                <img src="Frame 5.jpg" alt="Фото пары" class="contacts-photo">
+            </div>
+
+            <p class="contacts-text">
+                Если у вас возникли вопросы,<br> пожалуйста, свяжитесь с нами
+            </p>
+
+            <div class="contacts-row">
+                <div class="contact-person">
+                    <h3 class="organizer-name">АНГЕЛИНА</h3>
+                    <a href="tel:+79538150307" class="organizer-phone">+7 (953) 815-03-07</a>
+
+                    <a href="https://t.me/poceluevaangelina2" target="_blank" rel="noopener noreferrer" class="telegram-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="36" viewBox="0 0 35 36" fill="none">
+                        <g clip-path="url(#clip0_1_405)">
+                            <path d="M13.733 22.1596L13.1541 30.303C13.9824 30.303 14.3411 29.9472 14.7714 29.5199L18.6549 25.8084L26.702 31.7015C28.1778 32.524 29.2176 32.0909 29.6157 30.3438L34.8978 5.59298L34.8993 5.59153C35.3674 3.40986 34.1103 2.55673 32.6724 3.09194L1.62448 14.9788C-0.494482 15.8013 -0.462399 16.9826 1.26427 17.5178L9.20198 19.9867L27.6397 8.44986C28.5074 7.87528 29.2964 8.19319 28.6474 8.76778L13.733 22.1596Z" fill="black"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1_405">
+                                <rect width="35" height="35" fill="white" transform="translate(0 0.020752)"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    </a>
+                </div>
+
+                <div class="contact-person">
+                    <h3 class="organizer-name">СЕРГЕЙ</h3>
+                    <a href="tel:+79624806774" class="organizer-phone">+7 (962) 480-67-74</a>
+
+                    <a href="https://t.me/nykl1nn" target="_blank" rel="noopener noreferrer" class="telegram-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="36" viewBox="0 0 35 36" fill="none">
+                        <g clip-path="url(#clip0_1_405)">
+                            <path d="M13.733 22.1596L13.1541 30.303C13.9824 30.303 14.3411 29.9472 14.7714 29.5199L18.6549 25.8084L26.702 31.7015C28.1778 32.524 29.2176 32.0909 29.6157 30.3438L34.8978 5.59298L34.8993 5.59153C35.3674 3.40986 34.1103 2.55673 32.6724 3.09194L1.62448 14.9788C-0.494482 15.8013 -0.462399 16.9826 1.26427 17.5178L9.20198 19.9867L27.6397 8.44986C28.5074 7.87528 29.2964 8.19319 28.6474 8.76778L13.733 22.1596Z" fill="black"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1_405">
+                                <rect width="35" height="35" fill="white" transform="translate(0 0.020752)"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    </a>
+                </div>
+            </div>
+
+            <a href="#" class="contact-btn">СВЯЗАТЬСЯ</a>
+
+                    <!-- Модальное окно (Pop-up) -->
+                    <div id="contactModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close-btn">&times;</span>
+                            <h2>СВЯЗАТЬСЯ С НАМИ</h2>
+                            <p>Выберите удобный способ связи:</p>
+                            
+                            <div class="modal-contacts">
+                                <div class="modal-person">
+                                    <h3>Ангелина</h3>
+                                    <a href="tel:+79538150307" class="modal-link">📞 Позвонить</a>
+                                    <a href="https://t.me/poceluevaangelina2" target="_blank" class="modal-link">📱 Telegram</a>
+                                </div>
+                                <div class="modal-divider"></div>
+                                <div class="modal-person">
+                                    <h3>Сергей</h3>
+                                    <a href="tel:+79624806774" class="modal-link">📞 Позвонить</a>
+                                    <a href="https://t.me/nykl1nn" target="_blank" class="modal-link">📱 Telegram</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Логика модального окна
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const modal = document.getElementById("contactModal");
+                            const btn = document.querySelector(".contact-btn");
+                            const span = document.getElementsByClassName("close-btn")[0];
+
+                            if (btn) {
+                                btn.onclick = function(e) {
+                                    e.preventDefault(); // Предотвращаем переход по ссылке #
+                                    modal.style.display = "block";
+                                    // Небольшая задержка для анимации fade-in
+                                    setTimeout(() => {
+                                        modal.classList.add('show');
+                                    }, 10);
+                                }
+                            }
+
+                            if (span) {
+                                span.onclick = function() {
+                                    modal.classList.remove('show');
+                                    setTimeout(() => {
+                                        modal.style.display = "none";
+                                    }, 300); // Ждем окончания анимации
+                                }
+                            }
+
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.classList.remove('show');
+                                    setTimeout(() => {
+                                        modal.style.display = "none";
+                                    }, 300);
+                                }
+                            }
+                        });
+                    </script>
+        </section>
+
+        <!-- Секция Анкета гостя (RSVP) -->
+        <section class="rsvp-section">
+            <h2 class="rsvp-title">АНКЕТА ГОСТЯ</h2>
+            
+            <p class="rsvp-text">
+                Пожалуйста, подтвердите ваше<br>
+                присутствие на нашей свадьбе до
+            </p>
+
+            <div class="rsvp-date">
+                <span style="font-family: 'Lovelace', serif; font-weight: 400;">1</span> 
+                <span style="font-family: 'Lovelace', serif;">МАЯ</span> 
+                <span style="font-family: 'Lovelace', serif; font-weight: 400;">2026</span>
+            </div>
+
+            <div class="rsvp-btn-wrapper">
+                <a href="https://forms.yandex.ru/u/6976a18495add58636b45df8" target="_blank" class="rsvp-btn">ОТВЕТИТЬ НА ПРИГЛАШЕНИЕ</a>
+            </div>
+        </section>
+
+        <!-- Секция Финал -->
+        <section class="final-section">
+            <p class="final-text">
+                До скорой встречи!<br>
+                С любовью
+            </p>
+            <div class="final-vertical-line"></div>
+            
+            
+                <div class="final-name-s">СЕРГЕЙ</div>
+                <div class="final-ampersand">&</div>
+                <div class="final-name-a">АНГЕЛИНА</div>
+            
+
+            <div class="final-photo-container">
+                <img src="stol.jpg" alt="Фото пары" class="final-photo">
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Дата свадьбы: 20 июня 2026 года, 12:00
+        const weddingDate = new Date('June 20, 2026 12:00:00').getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? "0" + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Запустить сразу
+
+        // Слайдер пожеланий
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            // Скрываем текущий
+            slides[currentSlide].classList.remove('active');
+            
+            // Вычисляем новый индекс
+            currentSlide += direction;
+
+            // Циклическая прокрутка
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+
+            // Показываем новый
+            slides[currentSlide].classList.add('active');
+        }
+
+        // ============================================
+        // АНИМАЦИЯ ПРИ ПРОКРУТКЕ (IntersectionObserver)
+        // ============================================
+        // АНИМАЦИЯ ПРИ ПРОКРУТКЕ (IntersectionObserver)
+        // ============================================
+        document.addEventListener("DOMContentLoaded", function () {
+            // 1. Указываем элементы, которые будут выезжать СЛЕВА
+            const leftElements = [];
+            // Имена (Сергей)
+            const groom = document.querySelector('.groom'); if(groom) leftElements.push(groom);
+            const finalS = document.querySelector('.final-name-s'); if(finalS) leftElements.push(finalS);
+            // Контакты (Первый блок - Ангелина)
+            const contacts = document.querySelectorAll('.contact-person'); 
+            if(contacts.length > 0) leftElements.push(contacts[0]);
+            // Таймер (Дни, Часы)
+            const timerItems = document.querySelectorAll('.timer-item');
+            if(timerItems.length >= 2) { leftElements.push(timerItems[0]); leftElements.push(timerItems[1]); }
+            // Дресс-код (Девушки)
+            const outfits = document.querySelectorAll('.outfit-col');
+            if(outfits.length > 0) leftElements.push(outfits[0]);
+            // Тайминг (Нечетные пункты 1, 3...)
+            const timingItems = document.querySelectorAll('.timing-item');
+            timingItems.forEach((item, index) => {
+                if(index % 2 === 0) leftElements.push(item); // 0, 2 (1-й и 3-й)
+            });
+
+
+            // 2. Указываем элементы, которые будут выезжать СПРАВА
+            const rightElements = [];
+            // Имена (Ангелина)
+            const bride = document.querySelector('.bride'); if(bride) rightElements.push(bride);
+            const finalA = document.querySelector('.final-name-a'); if(finalA) rightElements.push(finalA);
+            // Контакты (Второй блок - Сергей)
+            if(contacts.length > 1) rightElements.push(contacts[1]);
+            // Таймер (Минуты, Секунды)
+            if(timerItems.length >= 4) { rightElements.push(timerItems[2]); rightElements.push(timerItems[3]); }
+            // Дресс-код (Мужчины)
+            if(outfits.length > 1) rightElements.push(outfits[1]);
+            // Тайминг (Четные пункты 2, 4...)
+            timingItems.forEach((item, index) => {
+                if(index % 2 !== 0) rightElements.push(item); // 1, 3 (2-й и 4-й)
+            });
+
+
+            // Применяем классы для направленной анимации
+            leftElements.forEach(el => el.classList.add('slide-in-left'));
+            rightElements.forEach(el => el.classList.add('slide-in-right'));
+
+
+            // 3. Собираем ВСЕ элементы, которые нужно анимировать
+            // Сначала берем общий селектор всех основных блоков
+            let allAnimatedElements = document.querySelectorAll(
+                'h1, h2, h3, p, .btn, a.location-btn, a.gift-list-btn, a.contact-btn, a.rsvp-btn, ' +
+                '.main-photo, .contacts-photo, .final-photo, ' +
+                '.names-wrapper, .big-date-wrapper, .calendar-wrapper, .location-card, ' +
+                '.timing-item, .palette-colors, .outfit-col, .timer-wrapper, .timer-item, ' +
+                '.contact-person, .final-name-s, .final-name-a, .final-ampersand, .rsvp-date'
+            );
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Небольшая задержка для плавности
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, 50); 
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            allAnimatedElements.forEach(el => {
+                // Если элементу еще не назначили класс слайда (left/right), 
+                // назначаем стандартный fade-in-up (появление снизу)
+                if (!el.classList.contains('slide-in-left') && !el.classList.contains('slide-in-right')) {
+                    el.classList.add('fade-in-up');
+                }
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+        <!-- Якорная кнопка для мобильной версии -->
+        <a href="https://forms.yandex.ru/u/6976a18495add58636b45df8" target="_blank" class="anchor-btn-mobile" id="anchorBtnMobile">ПОДТВЕРДИТЬ ПРИСУТСТВИЕ</a>
+        <script>
+            // Плавное появление/исчезновение кнопки
+            function toggleAnchorBtnMobile() {
+                const btn = document.getElementById('anchorBtnMobile');
+                const hero = document.querySelector('.photo-section.hero-section');
+                if (!btn || !hero) return;
+                const heroRect = hero.getBoundingClientRect();
+                // Если верхняя часть hero секции видна — скрываем кнопку
+                if (heroRect.bottom > 80) {
+                    btn.classList.remove('visible');
+                } else {
+                    btn.classList.add('visible');
+                }
+            }
+            window.addEventListener('scroll', toggleAnchorBtnMobile);
+            window.addEventListener('resize', toggleAnchorBtnMobile);
+            document.addEventListener('DOMContentLoaded', function() {
+                // Для корректного первого появления
+                const btn = document.getElementById('anchorBtnMobile');
+                if (btn) btn.style.display = 'block';
+                toggleAnchorBtnMobile();
+            });
+        </script>
+</html>
